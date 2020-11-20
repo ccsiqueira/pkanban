@@ -6,6 +6,8 @@ import nufsw.pkanban.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Siqueira
  */
@@ -33,6 +35,11 @@ public class ProjectService {
             throw new ProjectIdException("Project ID '" + identifier + "' does not exists");
 
         return project;
+    }
+
+    public List<Project> findAllProjects(){
+        List<Project> projects = projectRepository.findAll();
+        return projects;
     }
 
 }
