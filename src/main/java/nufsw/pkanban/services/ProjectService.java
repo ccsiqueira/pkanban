@@ -18,7 +18,7 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public Project saveOrUpdateProject(Project project) {
+    public Project saveProject(Project project) {
         try {
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
             return projectRepository.save(project);
@@ -40,6 +40,11 @@ public class ProjectService {
     public List<Project> findAllProjects(){
         List<Project> projects = projectRepository.findAll();
         return projects;
+    }
+
+    public void deleteProjectByIdentifier(String identifier){
+        Project project = findProjectByIdentifier(identifier);
+        projectRepository.delete(project);
     }
 
 }
