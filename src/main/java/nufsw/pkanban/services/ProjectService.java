@@ -28,6 +28,15 @@ public class ProjectService {
         }
     }
 
+    public Project updateProject(Project candidate){
+        Project persisted = findProjectByIdentifier(candidate.getProjectIdentifier());
+        persisted.setProjectName(candidate.getProjectName());
+        persisted.setDescription(candidate.getDescription());
+        persisted.setStartDate(candidate.getStartDate());
+        persisted.setEndDate(candidate.getEndDate());
+        return projectRepository.save(persisted);
+    }
+
     public Project findProjectByIdentifier(String identifier){
 
         Project project = projectRepository.findByProjectIdentifier(identifier.toUpperCase());

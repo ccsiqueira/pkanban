@@ -57,7 +57,7 @@ public class ProjectController {
         ResponseEntity<?> errorMap = validationService.validate(result);
         if(errorMap != null) return errorMap;
 
-        Project savedProject = projectService.saveProject(project);
-        return new ResponseEntity<Project>(savedProject, HttpStatus.OK);
+        Project updatedProject = projectService.updateProject(project);
+        return new ResponseEntity<Project>(updatedProject, HttpStatus.OK);
     }
 }
