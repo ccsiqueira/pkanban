@@ -11,5 +11,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 @RestResource(path = "projects", rel = "projects")
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-	//List<Project> findAllById();
+
+    Project findByProjectIdentifier(String identifier);
+
 }
