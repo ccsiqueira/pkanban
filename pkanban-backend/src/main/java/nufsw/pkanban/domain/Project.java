@@ -3,7 +3,6 @@ package nufsw.pkanban.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

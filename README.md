@@ -1,2 +1,2 @@
-# pkanban
+# nufsw.pkanban
 Personal Kanban Tool
