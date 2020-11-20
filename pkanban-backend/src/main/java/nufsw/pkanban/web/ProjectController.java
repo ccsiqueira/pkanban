@@ -26,36 +26,36 @@ public class ProjectController {
     private ValidationService validationService;
 
     @PostMapping
-    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result){
+    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
         ResponseEntity<?> errorMap = validationService.validate(result);
-        if(errorMap != null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Project savedProject = projectService.saveProject(project);
         return new ResponseEntity<Project>(savedProject, HttpStatus.CREATED);
     }
 
     @GetMapping("/{identifier}")
-    public ResponseEntity<?> getProjectByIdentifier(@PathVariable("identifier") String identifier){
+    public ResponseEntity<?> getProjectByIdentifier(@PathVariable("identifier") String identifier) {
         Project project = projectService.findProjectByIdentifier(identifier);
         return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAllProjects(){
+    public ResponseEntity<?> getAllProjects() {
         List<Project> projects = projectService.findAllProjects();
         return new ResponseEntity<List<Project>>(projects, HttpStatus.OK);
     }
 
     @DeleteMapping("/{identifier}")
-    public ResponseEntity<?> deleteProjectByIdentifier(@PathVariable("identifier") String identifier){
+    public ResponseEntity<?> deleteProjectByIdentifier(@PathVariable("identifier") String identifier) {
         projectService.deleteProjectByIdentifier(identifier.toUpperCase());
-        return new ResponseEntity<String>("Project with ID '"+identifier+"' was deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Project with ID '" + identifier + "' was deleted", HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result){
+    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result) {
         ResponseEntity<?> errorMap = validationService.validate(result);
-        if(errorMap != null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Project updatedProject = projectService.updateProject(project);
         return new ResponseEntity<Project>(updatedProject, HttpStatus.OK);

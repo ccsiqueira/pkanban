@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 public class PkanbanApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PkanbanApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PkanbanApplication.class, args);
+    }
 
 }

@@ -28,7 +28,7 @@ public class ProjectService {
         }
     }
 
-    public Project updateProject(Project candidate){
+    public Project updateProject(Project candidate) {
         Project persisted = findProjectByIdentifier(candidate.getProjectIdentifier());
         persisted.setProjectName(candidate.getProjectName());
         persisted.setDescription(candidate.getDescription());
@@ -37,21 +37,21 @@ public class ProjectService {
         return projectRepository.save(persisted);
     }
 
-    public Project findProjectByIdentifier(String identifier){
+    public Project findProjectByIdentifier(String identifier) {
 
         Project project = projectRepository.findByProjectIdentifier(identifier.toUpperCase());
-        if(project == null)
+        if (project == null)
             throw new ProjectIdException("Project ID '" + identifier + "' does not exists");
 
         return project;
     }
 
-    public List<Project> findAllProjects(){
+    public List<Project> findAllProjects() {
         List<Project> projects = projectRepository.findAll();
         return projects;
     }
 
-    public void deleteProjectByIdentifier(String identifier){
+    public void deleteProjectByIdentifier(String identifier) {
         Project project = findProjectByIdentifier(identifier);
         projectRepository.delete(project);
     }

@@ -6,12 +6,13 @@ import lombok.Setter;
 /**
  * @author Siqueira
  */
-@Setter @Getter
+@Setter
+@Getter
 public class ProjectIdExceptionResponse {
 
     private String projectIdentifier;
 
-    public ProjectIdExceptionResponse(String pId){
+    public ProjectIdExceptionResponse(String pId) {
         this.projectIdentifier = pId;
     }
 

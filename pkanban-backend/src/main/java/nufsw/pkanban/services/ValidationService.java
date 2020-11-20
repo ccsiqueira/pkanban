@@ -15,15 +15,14 @@ import java.util.Map;
 @Service
 public class ValidationService {
 
-    public ResponseEntity<Map<String, String>> validate(BindingResult result){
+    public ResponseEntity<Map<String, String>> validate(BindingResult result) {
         if (result.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
             for (FieldError error : result.getFieldErrors()) {
                 errorMap.put(error.getField(), error.getDefaultMessage());
             }
             return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
-        }
-        else return null;
+        } else return null;
     }
 
 }

@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
  * @author Siqueira
  */
 
-@Entity @Data
+@Entity
+@Data
 public class Project {
 
     @Id
@@ -46,13 +47,13 @@ public class Project {
     private LocalDateTime updatedAt;
 
     @PrePersist
-    protected void onCreate(){
+    protected void onCreate() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
-    protected void onUpdate(){
+    protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
 }
