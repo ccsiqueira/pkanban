@@ -22,16 +22,16 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank(message = "Project name is required")
+    @NotNull(message = "Project Name must not be null")
+    @NotBlank(message = "Project Name is required")
     private String projectName;
 
-    @NotNull
+    @NotNull(message = "Project Identifier must not be null")
     @NotBlank(message = "Project Identifier is required")
     @Size(min = 4, max = 5, message = "Please, use 4 to 5 characters")
     private String projectIdentifier;
 
-    @NotNull
+    @NotNull(message = "Description must not be null")
     @NotBlank(message = "Description is required")
     private String description;
 
