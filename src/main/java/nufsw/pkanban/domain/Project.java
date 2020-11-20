@@ -1,7 +1,12 @@
 package nufsw.pkanban.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,14 +22,27 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @NotBlank(message = "Project name is required")
     private String projectName;
+
+    @NotNull
+    @NotBlank(message = "Project Identifier is required")
+    @Size(min = 4, max = 5, message = "Please, use 4 to 5 characters")
     private String projectIdentifier;
+
+    @NotNull
+    @NotBlank(message = "Description is required")
     private String description;
 
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private LocalDate startDate;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private LocalDate endDate;
 
+    @JsonFormat(pattern = "yyyy-mm-dd hh:MM:ss")
     private LocalDateTime createdAt;
+    @JsonFormat(pattern = "yyyy-mm-dd hh:MM:ss")
     private LocalDateTime updatedAt;
 
     @PrePersist
