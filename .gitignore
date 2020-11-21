@@ -31,3 +31,27 @@ build/
 
 ### VS Code ###
 .vscode/
+/pkanban-frontend/pkanban-app/.vscode/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# dependencies
+/pkanban-frontend/pkanban-app/node_modules
+/pkanban-frontend/pkanban-app/.pnp
+/pkanban-frontend/pkanban-app/.pnp.js
+
+# testing
+/pkanban-frontend/pkanban-app/coverage
+
+# production
+/pkanban-frontend/pkanban-app/build
+
+# misc
+/pkanban-frontend/pkanban-app/.DS_Store
+/pkanban-frontend/pkanban-app/.env.local
+/pkanban-frontend/pkanban-app/.env.development.local
+/pkanban-frontend/pkanban-app/.env.test.local
+/pkanban-frontend/pkanban-app/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
