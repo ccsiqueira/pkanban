@@ -1,15 +1,15 @@
+//import errorReducer from "../reducers/errorReducer";
 import axios from "axios";
-import errorReducer from "../reducers/errorReducer";
-import {GET_ERRORS} from "./types";
+import { GET_ERRORS } from "./types";
 
 export const createProject = (project, history) => async dispatch => {
-    try {
-        const res = await axios.post("http://localhost:8081/api/projects/", project);
-        history.push("/dashboard");
-    } catch(err){
-        dispatch({
-            type: GET_ERRORS,
-            payload: err.response.data
-        });
-    }
+  try {
+    const res = await axios.post("http://localhost:8081/api/projects", project);
+    history.push("/dashboard");
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
 };

@@ -1,21 +1,45 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {createProject} from "../../actions/projectActions";
+import { connect } from "react-redux";
+import { createProject } from "../../actions/projectActions";
 
 class AddProject extends Component {
   constructor() {
     super();
+
     this.state = {
       projectName: "",
       projectIdentifier: "",
       description: "",
       startDate: "",
       endDate: "",
+      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  //life cycle hooks
+  // componentWillReceiveProps(nextProps){
+  //   console.log(nextProps);
+  //   if(nextProps.errors){
+  //     this.setState({errors: nextProps.errors});
+  //   }
+  // }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.errors !== prevState.errors) {
+      return { errors: nextProps.errors };
+    } else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.errors !== this.state.errors) {
+      //Perform some operation here
+      this.setState({ errors: prevProps.errors });
+      //this.classMethod();
+    }
   }
 
   onChange(e) {
@@ -23,19 +47,24 @@ class AddProject extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault(); 
-     
+    e.preventDefault();
+
     const newProject = {
       projectName: this.state.projectName,
       projectIdentifier: this.state.projectIdentifier,
       description: this.state.description,
-      startDate: this.state.startDate+" 00:00:00",
-      endDate: this.state.endDate+" 00:00:00",
+      startDate: this.state.startDate? (this.state.startDate + " 00:00:00") : null,
+      endDate: this.state.endDate? (this.state.endDate + " 00:00:00") : null//,
+      //errors: {}
     };
+    console.log(newProject);
+    
     this.props.createProject(newProject, this.props.history);
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div className="project">
         <div className="container">
@@ -55,6 +84,7 @@ class AddProject extends Component {
                     value={this.state.projectName}
                     onChange={this.onChange}
                   />
+                  <p>{errors.projectName}</p>
                 </div>
 
                 <div className="form-group">
@@ -66,6 +96,7 @@ class AddProject extends Component {
                     value={this.state.projectIdentifier}
                     onChange={this.onChange}
                   />
+                  <p>{errors.projectIdentifier}</p>
                 </div>
 
                 <div className="form-group">
@@ -76,6 +107,7 @@ class AddProject extends Component {
                     value={this.state.description}
                     onChange={this.onChange}
                   ></textarea>
+                  <p>{errors.description}</p>
                 </div>
 
                 <h6>Start Date</h6>
@@ -115,7 +147,12 @@ class AddProject extends Component {
 }
 
 AddProject.propTypes = {
-  createProject: PropTypes.func.isRequired
+  createProject: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
-export default connect(null, {createProject}) (AddProject);
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { createProject })(AddProject);
