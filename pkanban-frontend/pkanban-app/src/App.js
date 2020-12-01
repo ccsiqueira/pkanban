@@ -5,8 +5,10 @@ import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AddProject from "./components/Project/AddProject";
+import EditProject from "./components/Project/EditProject";
 import { Provider } from "react-redux";
 import store from "./store";
+
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
             <Header />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addProject" component={AddProject} />
+            <Route exact path="/editProject/:id" component={EditProject} />
           </div>
         </Router>
       </Provider>
