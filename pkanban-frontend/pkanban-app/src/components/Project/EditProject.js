@@ -159,7 +159,11 @@ class EditProject extends Component {
                     className="form-control form-control-lg"
                     type="date"
                     name="startDate"
-                    value={this.state.startDate.substring(0, 10)}
+                    value={
+                      this.state.startDate
+                      ? this.state.startDate.substring(0, 10)
+                      : ""
+                    }
                     onChange={this.onChange}
                   />
                 </div>
@@ -170,7 +174,11 @@ class EditProject extends Component {
                     className="form-control form-control-lg"
                     type="date"
                     name="endDate"
-                    value={this.state.endDate.substring(0, 10)}
+                    value={
+                      this.state.endDate
+                      ? this.state.endDate.substring(0, 10)
+                      : ""
+                    }
                     onChange={this.onChange}
                   />
                 </div>
