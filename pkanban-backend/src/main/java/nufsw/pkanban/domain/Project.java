@@ -13,8 +13,7 @@ import java.time.LocalDateTime;
  * @author Siqueira
  */
 
-@Entity
-@Data
+@Entity @Data
 public class Project {
 
     @Id
@@ -46,6 +45,9 @@ public class Project {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedAt;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    private Backlog backlog;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -56,4 +58,5 @@ public class Project {
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
 }

@@ -1,5 +1,6 @@
 package nufsw.pkanban.services;
 
+import nufsw.pkanban.domain.Backlog;
 import nufsw.pkanban.domain.Project;
 import nufsw.pkanban.exceptions.ProjectIdException;
 import nufsw.pkanban.repository.ProjectRepository;
@@ -21,6 +22,12 @@ public class ProjectService {
     public Project saveProject(Project project) {
         try {
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+
+            Backlog backlog = new Backlog();
+            project.setBacklog(backlog);
+            backlog.setProject(project);
+            backlog.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+
             return projectRepository.save(project);
         } catch (Exception ex) {
             throw new ProjectIdException("Project ID '" + project.getProjectIdentifier().toUpperCase() +
